@@ -1,0 +1,15 @@
+<div *ngIf="foo">
+    <div>{{foo.id}}</div>
+    <div>{{foo.name}}</div>
+    <div>{{foo.description}}</div>
+    <table>
+        <tr>
+            <th>name</th>
+            <th>amount</th>
+        </tr>
+        <tr *ngFor="let bar of foo.bars">
+            <td>{{bar.name}}</td>
+            <td>{{bar.amount}}</td>
+        </tr>
+    </table>
+</div>
