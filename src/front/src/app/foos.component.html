@@ -1,16 +1,20 @@
-<table>
-    <tr>
-        <th>id</th>
-        <th>name</th>
-        <th>description</th>
-    </tr>
-    <tr *ngFor="let foo of foos">
-        <td>{{foo.id}}</td>
-        <td>
+<mat-table #table [dataSource]="fooDataSource">
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let foo">{{foo.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let foo">
             <a routerLink="/foos/{{foo.id}}">
                 <span>{{foo.name}}</span>
             </a>
-        </td>
-        <td>{{foo.description}}</td>
-    </tr>
-</table>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+        <mat-cell *matCellDef="let foo">{{foo.description}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

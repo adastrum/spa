@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from '@angular/material';
 import { Foo } from "./foo";
 import { Bar } from "./bar";
 
@@ -9,7 +10,11 @@ import { Bar } from "./bar";
     templateUrl: './foo.component.html'
 })
 export class FooComponent implements OnInit {
+
     foo: Foo;
+    barDataSource: MatTableDataSource<Bar>;
+    displayedColumns = ['name', 'amount'];
+
     constructor(
         private route: ActivatedRoute,
         private http: HttpClient
@@ -18,9 +23,10 @@ export class FooComponent implements OnInit {
 
     public ngOnInit(): void {
         const id = +this.route.snapshot.paramMap.get('id');
-        this.http.get(`http://spa.local/foos/${id}`).subscribe(data => {
+        this.http.get(`http://spa.api.local/foos/${id}`).subscribe(data => {
             console.log(data);
             this.foo = <Foo>data;
+            this.barDataSource = new MatTableDataSource<Bar>(this.foo.bars);
         });
     }
 }

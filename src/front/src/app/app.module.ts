@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { FoosComponent } from './foos.component';
 import { FooComponent } from './foo.component';
 
-import { MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatTableModule } from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
@@ -22,8 +22,7 @@ import { AppRoutingModule } from './/app-routing.module';
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
+    MatTableModule,
     AppRoutingModule
   ],
   providers: [],

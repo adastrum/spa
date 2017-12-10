@@ -1,15 +1,28 @@
 <div *ngIf="foo">
-    <div>{{foo.id}}</div>
-    <div>{{foo.name}}</div>
-    <div>{{foo.description}}</div>
-    <table>
-        <tr>
-            <th>name</th>
-            <th>amount</th>
-        </tr>
-        <tr *ngFor="let bar of foo.bars">
-            <td>{{bar.name}}</td>
-            <td>{{bar.amount}}</td>
-        </tr>
-    </table>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="ID" value="{{foo.id}}" readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Name" value="{{foo.name}}">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Description" value="{{foo.description}}">
+        </mat-form-field>
+    </form>
+    <mat-table #table [dataSource]="barDataSource">
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let bar">{{bar.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+            <mat-cell *matCellDef="let bar">{{bar.amount}}
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
 </div>
