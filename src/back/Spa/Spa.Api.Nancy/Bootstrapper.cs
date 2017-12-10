@@ -12,6 +12,7 @@ namespace Spa.Api.Nancy
             container.Register<FooService>();
 
             pipelines.AfterRequest.AddItemToEndOfPipeline(context => context.Response
+                .WithHeader("Access-Control-Allow-Origin", "http://spa.web.local")
                 .WithHeader("Access-Control-Allow-Origin", "http://localhost:4200")
                 .WithHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS")
                 .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type")
